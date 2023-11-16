@@ -1,21 +1,21 @@
-import HomeIcon from "../Pictures/HomeIcon.png"
-import AddDeleteIcon from "../Pictures/AddDeleteIcon.png"
-import Kcal from "../Pictures/Kcal.png"
+import HomeIcon from "../Icons/HomeIcon.png"
+import AddDeleteIcon from "../Icons/AddDeleteIcon.png"
+import Kcal from "../Icons/Kcal.png"
 
 export const SidebarData = [
   {
     title: "Home",
     icon: HomeIcon,
-    link: "/home"
+    link: "/Home"
   },
   {
     title: "Add/Delete",
     icon: AddDeleteIcon,
-    link: "/addDelete"
+    link: "/AddDelete"
   },
   {
     title: "Cal Calculator",
     icon: Kcal,
-    link: "/calCalculator"
+    link: "/CalCalculator"
   }
 ]
