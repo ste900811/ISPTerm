@@ -13,16 +13,21 @@ body {
 .SidebarList {
   height: 100%;
   width: 100%;
-  list-style: none;
-  font-size: 20px;
-  font-family: "Comic Sans MS";
 }
 
 .SidebarList .row {
   margin-left: -30px;
   height: 40px;
   width: 230px;
+  list-style: none;
   background-color: #f3efdd;
+  font-size: 20px;
+  font-family: "Comic Sans MS";
+}
+
+.SidebarList .row:hover {
+  background-color: #e0d9d3;
+  cursor:grab;
 }
 
 #icon {
