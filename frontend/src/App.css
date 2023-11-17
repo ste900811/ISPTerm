@@ -2,8 +2,14 @@
   float: left;
   width: calc(100% - 250px);
   height: 98vh;
-  background-color: #CCCCCC;
+  background-color: #e0d9d3;
   text-align: center;
+  font-family: "Comic Sans MS";
+}
+
+.App #title {
+  font-size: 45px;
+  height: 80px;
 }
 
 /* Side bar style */
@@ -11,7 +17,7 @@
   float: left;
   width: 250px;
   height: 98vh;
-  background-color: #e0d9d3;
+  background-color: #CCCCCC;
   z-index: 0;
 }
 
@@ -42,8 +48,6 @@
 
 /* CalCalculator style */
 .option {
-  font-size: 20px;
-  font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
-  background-color: DodgerBlue;
+  font-size: 16px;
   border-radius: 5px;
 }
