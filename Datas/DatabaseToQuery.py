@@ -8,10 +8,25 @@ df = pd.read_excel('./DatabaseList.xlsx')
 array = df.to_numpy().tolist()
 
 f = open("./DatabaseQuery/createFavoriteMeal.sql", "w")
+f.write("CREATE TABLE favoriteMeal (\n")
+f.write("\tmealID int,\n")
+f.write("\trestaurant varchar(20),\n")
+f.write("\tmealName varchar(100),\n")
+f.write("\tcalories int,\n")
+f.write("\tprice float,\n")
+f.write("\tPRIMARY KEY (mealID)\n")
+f.write(");\n\n")
+
 f.write("INSERT INTO FavoriteMeal (mealID, restaurant, mealName, calories, price)\nVALUES\n")
 
-for row in array:
-    print(row)
-    # row = row.replace("'", "\"").replace("'", "''")
-    # f.write("(" + str(row[0]) + ", '" + str(row[1]) + "', '" + str(row[2]) + "', " + str(row[3]) + ", " +  "),\n")
+for index, row in enumerate(array):
+  temp = "( " + str(index) + " , "
+  for column in row:
+    if type(column) == str:
+      column = column.replace("'", "''").replace("\n","")
+      temp += "\"" + column + "\" , "
+    else:
+      temp += str(column) + " , "
+  temp = temp[:-3] + " ),\n"
+  f.write(temp)
 f.close()
