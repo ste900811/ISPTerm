@@ -6,7 +6,7 @@ calories = []
 price = []
 lineCount = 1
 
-f = open("DataMcDonalds.txt", "r")
+f = open("RawDataMcDonalds.txt", "r")
 Lines = f.readlines()
 for line in Lines:
   line = line.replace("\n", "")

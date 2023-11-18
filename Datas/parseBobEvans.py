@@ -6,7 +6,7 @@ calories = []
 price = []
 lineCount = 1
 
-f = open("DataBobEvans.txt", "r")
+f = open("RawDataBobEvans.txt", "r")
 Lines = f.readlines()
 for line in Lines:
 

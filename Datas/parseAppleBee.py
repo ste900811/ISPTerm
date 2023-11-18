@@ -8,7 +8,7 @@ calories = []
 price = []
 lineCount = 1
 
-f = open("DataAppleBee.txt", "r")
+f = open("RawDataAppleBee.txt", "r")
 Lines = f.readlines()
 for line in Lines:
 
