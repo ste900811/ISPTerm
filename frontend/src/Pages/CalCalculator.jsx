@@ -26,41 +26,39 @@ export const CalCalculator = () => {
   }
 
   return(
-    <div>
-      <div className="App">
-        <div id="title">Calories Calculator</div>
+    <div className="App">
+      <div id="title">Calories Calculator</div>
 
-        <select className="option" id="age">
-          <option value="None">Select Age</option>
-          <option value="2">1-3</option>
-          <option value="4">4-8</option>
-          <option value="9">9-13</option>
-          <option value="14">14-18</option>
-          <option value="19">19-30</option>
-          <option value="31">31-50</option>
-          <option value="51">51+</option>
-        </select>
-        &emsp;&emsp;
-        <select className="option" id="gender">
-          <option value="None">Select Gender</option>
-          <option value="male">Male</option>
-          <option value="female">Female</option>
-        </select>
+      <select className="option" id="age">
+        <option value="None">Select Age</option>
+        <option value="2">1-3</option>
+        <option value="4">4-8</option>
+        <option value="9">9-13</option>
+        <option value="14">14-18</option>
+        <option value="19">19-30</option>
+        <option value="31">31-50</option>
+        <option value="51">51+</option>
+      </select>
+      &emsp;&emsp;
+      <select className="option" id="gender">
+        <option value="None">Select Gender</option>
+        <option value="male">Male</option>
+        <option value="female">Female</option>
+      </select>
 
-        <br></br><br></br>
+      <br></br><br></br>
 
-        <button onClick={getCalories}>Calculate</button>
+      <button onClick={getCalories}>Calculate</button>
 
-        <br></br>
+      <br></br>
 
-        {showText &&
-          <div>
-            <h2>Suggestion daily Calories: <span style={{color:"red"}}>{calories}</span></h2>
-            <h2>Suggestion breakfast Calories: {breakfastCalories}</h2>
-            <h2>Suggestion lunch/dinner Calories: {LunchDinnerCalories}</h2>
-          </div>
-        }
-      </div>
+      {showText &&
+        <div>
+          <h2>Suggestion daily Calories: <span style={{color:"red"}}>{calories}</span></h2>
+          <h2>Suggestion breakfast Calories: {breakfastCalories}</h2>
+          <h2>Suggestion lunch/dinner Calories: {LunchDinnerCalories}</h2>
+        </div>
+      }
     </div>
   );
 }

@@ -19,17 +19,26 @@ con.connect((err) => {
   console.log('Connected to MySQL!');
 });
 
-app.get("/test", (req, res) => {
-  con.query("SELECT * FROM calories", (err, result) => {
+// endpoint for Cal Calculator page
+app.get("/cal/:gender/:age", async (req, res) => {
+  const gender = req.params.gender;
+  const age = req.params.age;
+  let query = "SELECT calories FROM calories WHERE gender = \"" + gender + "\" AND age = " + age;
+  con.query(query, (err, result) => {
     if (err) throw err;
     res.send(result);
   })
 });
 
-app.get("/cal/:gender/:age", async (req, res) => {
-  const gender = req.params.gender;
-  const age = req.params.age;
-  let query = "SELECT calories FROM calories WHERE gender = \"" + gender + "\" AND age = " + age;
+// endpoint for Add/Delete page
+app.get("/add/:restaurant/:mealName/:calories/:price", async (req, res) => {
+  const restaurant = req.params.restaurant;
+  const mealName = req.params.mealName;
+  const calories = req.params.calories;
+  const price = req.params.price;
+  console.log(restaurant, mealName, calories, price);
+  let query = "INSERT INTO favoritemeal (restaurant, mealName, calories, price) VALUES (\"" + restaurant + "\", \"" + mealName + "\", " + calories + ", " + price + ")";
+  console.log(query);
   con.query(query, (err, result) => {
     if (err) throw err;
     res.send(result);

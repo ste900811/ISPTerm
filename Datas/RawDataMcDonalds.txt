@@ -2,7 +2,6 @@ Crispy Chicken Sandwich (Spicy Deluxe)	530	$6.99
 Crispy Chicken Sandwich	470	$6.19
 Chicken Sandwich (Spicy Crispy)	530	$6.19
 Chicken Sandwich (Deluxe Crispy)	530	$6.99
-Chicken McNuggets	170	$4.99
 McChicken	400	$3.99
 Filet O Fish 390 $6.69
 Big Mac Combo Meal	1080	$13.19
@@ -11,7 +10,6 @@ Double Quarter Pounder with Cheese Meal	1260	$14.39
 Combo Crispy Chicken Sandwich Meal	990	$12.97
 Combo Chicken Sandwich (Spicy & Crispy)	980	$13.81
 Combo Chicken Sandwich (Deluxe Crispy)	1050	$13.81
-Chicken McNuggets – 10 Count	530	$11.29
 Filet-O-Fish Meal 	910 	$12.09
 Egg McMuffin	450	$2.79
 Sausage McMuffin (with Egg Meal)	620	$4.19
@@ -26,7 +24,6 @@ Sausage McMuffin	400	$1.19
 Sausage McGriddles	430	$2.71
 Hash Browns	430	$1.81
 McDouble	400	$3.19
-McChicken	400	$3.99
 Chicken McNuggets	170	$3.89
 Warld Famous Fries	230	$3.79
 Coca-Cola	150	$1.61
@@ -36,10 +33,7 @@ Dr Pepper	40	$1.61
 Diet Coke	0	$1.49
 Unsweetened Iced Tea	0	$1.29
 Bacon, Egg & Cheese Biscuit	450	$3.89
-Egg McMuffin	310	$3.99
-Sausage McMuffin	400	$1.39
 Sausage Egg McMuffin	480	$3.39
-Sausage Biscuit	460	$1.79
 Sausage Egg Biscuit	530	$3.69
 Bacon Egg Cheese McGriddle	420	$3.59
 Sausage McGriddle	430	$2.99
