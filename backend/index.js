@@ -31,7 +31,16 @@ app.get("/cal/:gender/:age", async (req, res) => {
 });
 
 // endpoint for Add/Delete page
-app.get("/add/:restaurant/:mealName/:calories/:price", async (req, res) => {
+app.get("/addDelete/restaurant", async (req, res) => {
+  console.log("fetch");
+  let query = "SELECT DISTINCT restaurant FROM favoritemeal";
+  con.query(query, (err, result) => {
+    if (err) throw err;
+    res.send(result);
+  })
+});
+
+app.get("/addDelete/:restaurant/:mealName/:calories/:price", async (req, res) => {
   const restaurant = req.params.restaurant;
   const mealName = req.params.mealName;
   const calories = req.params.calories;
