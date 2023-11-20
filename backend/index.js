@@ -50,13 +50,29 @@ app.get("/addDelete/mealName/:restaurant", async (req, res) => {
   })
 });
 
-app.get("/addDelete/:restaurant/:mealName/:calories/:price", async (req, res) => {
+app.get("/addDelete/add/:restaurant/:mealName/:calories/:price", async (req, res) => {
   const restaurant = req.params.restaurant;
   const mealName = req.params.mealName;
   const calories = req.params.calories;
   const price = req.params.price;
   console.log(restaurant, mealName, calories, price);
   let query = "INSERT INTO favoritemeal (restaurant, mealName, calories, price) VALUES (\"" + restaurant + "\", \"" + mealName + "\", " + calories + ", " + price + ")";
+  console.log(query);
+  con.query(query, (err, result) => {
+    try{
+      if (err) throw err;
+      result = { "restaurant": restaurant, "mealName": mealName }
+      res.status(200).send(result);
+    } catch (err) {
+      console.log(err);
+    }
+  })
+});
+
+app.get("/addDelete/delete/:restaurant/:mealName", async (req, res) => {
+  const restaurant = req.params.restaurant;
+  const mealName = req.params.mealName;
+  let query = "DELETE FROM favoritemeal WHERE restaurant = \"" + restaurant + "\" AND mealName = \"" + mealName + "\"";
   console.log(query);
   con.query(query, (err, result) => {
     if (err) throw err;

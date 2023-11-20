@@ -9,6 +9,38 @@ export const AddDelete = () => {
   // fetch initial restaurant
   useEffect(() => {
     // fetch initial restaurant
+    fetchRestaurant();
+  }, []);
+
+  // fetch initial mealName
+  useEffect(() => {
+    fetchMealName(restaurant[0])
+  }, [restaurant]);
+
+  // addMeal function
+  function addMeal() {
+    let restaurant = document.getElementById("addRestaurant").value;
+    let mealName = document.getElementById("addMealName").value;
+    let calories = document.getElementById("addCalories").value;
+    let price = document.getElementById("addPrice").value;
+    if (restaurant === "") {alert("Please enter restaurant name."); return;}
+    if (mealName === "") {alert("Please enter meal name."); return;}
+    if (calories === "") {alert("Please enter calories."); return;}
+    if (price === "") {alert("Please enter price."); return;}
+    fetch(`http://localhost:3002/addDelete/add/${restaurant}/${mealName}/${calories}/${price}`)
+      .then((res) => res.json())
+      .then((data) => {
+        alert("Data successfully added!");
+        if (restaurant.includes(data.restaurant)) {return;}
+        setRestaurant([...restaurant, data.restaurant]);
+      })
+      .catch((err) => {
+        alert("Data failed to add.");
+      });
+  }
+
+  // fetch restaurant function
+  function fetchRestaurant() {
     fetch(`http://localhost:3002/addDelete/restaurant`)
     .then((res) => res.json())
     .then((data) => {
@@ -18,34 +50,9 @@ export const AddDelete = () => {
         setRestaurant(temp);
       })
     });
-  }, []);
-
-  // fetch initial mealName
-  useEffect(() => {
-    fetchMealName(restaurant[0])
-  }, [restaurant]);
-
-  // AddMeal function
-  function AddMeal() {
-    let restaurant = document.getElementById("addRestaurant").value;
-    let mealName = document.getElementById("addMealName").value;
-    let calories = document.getElementById("addCalories").value;
-    let price = document.getElementById("addPrice").value;
-    if (restaurant === "") {alert("Please enter restaurant name."); return;}
-    if (mealName === "") {alert("Please enter meal name."); return;}
-    if (calories === "") {alert("Please enter calories."); return;}
-    if (price === "") {alert("Please enter price."); return;}
-    fetch(`http://localhost:3002/addDelete/${restaurant}/${mealName}/${calories}/${price}`)
-      .then((res) => res.json())
-      .then((data) => {
-        alert("Data successfully added!");
-      })
-      .catch((err) => {
-        alert("Data failed to add.");
-      });
   }
 
-  // DeleteMeal function
+  // fetch mealName function
   function fetchMealName(restaurant) {
     let temp = [];
     fetch(`http://localhost:3002/addDelete/mealName/${restaurant}`)
@@ -58,10 +65,25 @@ export const AddDelete = () => {
     });
   }
 
-  // Change restaurant function
+  // change restaurant function
   function changeRestaurant() {
+    let newRestaurant = document.getElementById("deleteRestaurant").value;
+    fetchMealName(newRestaurant);
+  }
+
+  // deleteMeal function
+  function deleteMeal() {
     let restaurant = document.getElementById("deleteRestaurant").value;
-    fetchMealName(restaurant);
+    let mealName = document.getElementById("deleteMealName").value;
+    fetch(`http://localhost:3002/addDelete/delete/${restaurant}/${mealName}`)
+      .then((res) => res.json())
+      .then((data) => {
+        alert("Data successfully deleted!");
+        fetchMealName(restaurant[0]);
+      })
+      .catch((err) => {
+        alert("Data failed to delete.");
+      });
   }
 
   // render the page
@@ -77,7 +99,7 @@ export const AddDelete = () => {
           Calories: <input type="text" id="addCalories" placeholder="ex: 800" />
           Price: <input type="text" id="addPrice" placeholder="ex: 12.99" />
         </p>
-        <button onClick={AddMeal}>Add</button>
+        <button onClick={addMeal}>Add</button>
       </div>
 
       <div className="addDelete">Delete Meal
@@ -89,6 +111,7 @@ export const AddDelete = () => {
             {mealName.map((mealName) => <option key={mealName}>{mealName}</option>)}
           </select>
         </p>
+        <button onClick={deleteMeal}>Delete</button>
       </div>
     </div>
   );
