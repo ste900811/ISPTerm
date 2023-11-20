@@ -26,17 +26,27 @@ app.get("/cal/:gender/:age", async (req, res) => {
   let query = "SELECT calories FROM calories WHERE gender = \"" + gender + "\" AND age = " + age;
   con.query(query, (err, result) => {
     if (err) throw err;
-    res.send(result);
+    res.status(200).send(result);
   })
 });
 
 // endpoint for Add/Delete page
 app.get("/addDelete/restaurant", async (req, res) => {
-  console.log("fetch");
   let query = "SELECT DISTINCT restaurant FROM favoritemeal";
+  console.log("fetching restaurant")
   con.query(query, (err, result) => {
     if (err) throw err;
-    res.send(result);
+    res.status(200).send(result);
+  })
+});
+
+app.get("/addDelete/mealName/:restaurant", async (req, res) => {
+  const restaurant = req.params.restaurant;
+  let query = "SELECT mealName FROM favoritemeal WHERE restaurant = \"" + restaurant + "\"";
+  console.log("fetching mealName")
+  con.query(query, (err, result) => {
+    if (err) throw err;
+    res.status(200).send(result);
   })
 });
 
@@ -50,7 +60,7 @@ app.get("/addDelete/:restaurant/:mealName/:calories/:price", async (req, res) =>
   console.log(query);
   con.query(query, (err, result) => {
     if (err) throw err;
-    res.send(result);
+    res.status(200).send(result);
   })
 });
 
