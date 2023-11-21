@@ -5,6 +5,7 @@ import '../App.css';
 export const AddDelete = () => {
   const [restaurant, setRestaurant] = useState([]);
   const [mealName, setMealName] = useState([]);
+  const [value, setValue] = useState("");
 
   // fetch initial restaurant
   useEffect(() => {
@@ -16,6 +17,17 @@ export const AddDelete = () => {
   useEffect(() => {
     fetchMealName(restaurant[0])
   }, [restaurant]);
+
+  // onChangeAddRestaurant function
+  const onChangeAddRestaurant = (e) => {
+    setValue(e.target.value);
+  };
+
+  // onSearch function
+  const setItem = (item) => {
+    console.log(item);
+    setValue(item);
+  };
 
   // addMeal function
   function addMeal() {
@@ -92,13 +104,27 @@ export const AddDelete = () => {
       <div id="title">Add & Delete Menu</div>
 
       <div className="addDelete">Add Meal
-        <p>
-          Restaurant: <input type="text" id="addRestaurant" placeholder="ex: KFC" />
+        <div id="addRestaurantDiv">
+          Restaurant: <input type="text" id="addRestaurant" placeholder="ex: KFC" value={value} onChange={onChangeAddRestaurant} />
+          <div className="dropDown">
+            {restaurant
+              .filter(item => {
+                const searchTerm = value.toLowerCase();
+                const itemName = item.toLowerCase();
+                return searchTerm && itemName.includes(searchTerm) && itemName !== searchTerm;})
+              .map((item) => <div onClick={()=>setItem(item)} key={item}>{item}</div>)
+            }
+          </div>
+        </div>
+        <div id="addMealNameDiv">
           Meal Name: <input type="text" id="addMealName" placeholder="ex: Meal 1" />
-          <br></br>
+        </div>
+        <div id="addCaloriesDiv">
           Calories: <input type="text" id="addCalories" placeholder="ex: 800" />
+        </div>
+        <div id="addPriceDiv">
           Price: <input type="text" id="addPrice" placeholder="ex: 12.99" />
-        </p>
+        </div>
         <button onClick={addMeal}>Add</button>
       </div>
 
