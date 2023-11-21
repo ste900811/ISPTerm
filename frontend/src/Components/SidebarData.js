@@ -1,6 +1,6 @@
 import HomeIcon from "../Icons/HomeIcon.png"
 import AddDeleteIcon from "../Icons/AddDeleteIcon.png"
-import Kcal from "../Icons/Kcal.png"
+import KalIcon from "../Icons/KalIcon.png"
 
 export const SidebarData = [
   {
@@ -15,7 +15,7 @@ export const SidebarData = [
   },
   {
     title: "Cal Calculator",
-    icon: Kcal,
+    icon: KalIcon,
     link: "/CalCalculator"
   }
 ]
