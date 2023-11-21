@@ -38,7 +38,7 @@
 
 .SidebarList .row:hover {
   background-color: #ffffff;
-  cursor:grab;
+  cursor: pointer;
 }
 
 #icon {
@@ -88,6 +88,14 @@
 
 .addDelete .dropDown:empty {
   border: none;
+}
+
+.addDelete .dropDown:hover {
+  cursor: pointer;
+}
+
+.addDelete select {
+  width: 80%;
 }
 
 /* CalCalculator style */
