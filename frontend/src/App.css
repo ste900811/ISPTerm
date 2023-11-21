@@ -2,14 +2,14 @@
   float: left;
   width: calc(100% - 250px);
   height: 98vh;
-  background-color: #e0d9d3;
+  background-color: #8cbdb9;
   text-align: center;
-  font-family: "Comic Sans MS";
   z-index: 0;
 }
 
 .App #title {
   font-size: 45px;
+  font-family: "Comic Sans MS";
   height: 80px;
 }
 
@@ -18,7 +18,7 @@
   float: left;
   width: 250px;
   height: 98vh;
-  background-color: #CCCCCC;
+  background-color: #e8eceb;
 }
 
 .SidebarList {
@@ -31,13 +31,13 @@
   height: 40px;
   width: 230px;
   list-style: none;
-  background-color: #f3efdd;
+  background-color: #e8eceb;
   font-size: 20px;
   font-family: "Comic Sans MS";
 }
 
 .SidebarList .row:hover {
-  background-color: #e0d9d3;
+  background-color: #ffffff;
   cursor:grab;
 }
 
@@ -53,8 +53,9 @@
   height: 200px;
   margin-top: 20px;
   margin-left: 50px;
+  color: #e09e50;
   border: solid black 5px;
-  background-color: rgb(84, 102, 61);
+  background-color: #fcd752;
   text-align: center;
   font-family: "Comic Sans MS";
 }
@@ -63,52 +64,30 @@
   font-size: 30px;
   height: 40px;
   width: 100%;
-  background-color: #f3efdd;
+  background-color: #2D3E4E;
 }
 
-.addDelete #addRestaurantDiv {
+.addDelete .addMealDiv {
+  color: black;
   float: left;
   width: 50%;
   height: 40px;
   font-size: 20px;
-  background-color: aqua;
 }
 
 .addDelete .dropDown {
+  left: 145px;
+  margin-right: -200px;
+  width: 50%;
+  font-size: 16px;
   background-color: white;
-  display: flex;
   position: relative;
   flex-direction: column;
-  border: 1px solid gray;
-  z-index: 3;
+  border: 1px solid #fca3b9;
 }
 
 .addDelete .dropDown:empty {
   border: none;
-}
-
-.addDelete #addMealNameDiv {
-  float: left;
-  width: 50%;
-  height: 40px;
-  font-size: 20px;
-  background-color: aquamarine;
-}
-
-.addDelete #addCaloriesDiv {
-  float: left;
-  width: 50%;
-  height: 40px;
-  font-size: 20px;
-  /* background-color: blue; */
-}
-
-.addDelete #addPriceDiv {
-  float: left;
-  width: 50%;
-  height: 40px;
-  font-size: 20px;
-  /* background-color: blueviolet; */
 }
 
 /* CalCalculator style */

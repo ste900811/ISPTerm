@@ -18,33 +18,20 @@ export const AddDelete = () => {
     fetchMealName(restaurant[0])
   }, [restaurant]);
 
-  // onChangeAddRestaurant function
-  const onChangeAddRestaurant = (e) => {
-    setValue(e.target.value);
-  };
-
-  // onSearch function
-  const setItem = (item) => {
-    console.log(item);
-    setValue(item);
-  };
-
   // addMeal function
   function addMeal() {
-    let restaurant = document.getElementById("addRestaurant").value;
-    let mealName = document.getElementById("addMealName").value;
-    let calories = document.getElementById("addCalories").value;
-    let price = document.getElementById("addPrice").value;
-    if (restaurant === "") {alert("Please enter restaurant name."); return;}
-    if (mealName === "") {alert("Please enter meal name."); return;}
-    if (calories === "") {alert("Please enter calories."); return;}
-    if (price === "") {alert("Please enter price."); return;}
-    fetch(`http://localhost:3002/addDelete/add/${restaurant}/${mealName}/${calories}/${price}`)
-      .then((res) => res.json())
-      .then((data) => {
+    let tempRestaurant = document.getElementById("addRestaurant").value;
+    let tempMealName = document.getElementById("addMealName").value;
+    let tempCalories = document.getElementById("addCalories").value;
+    let tempPrice = document.getElementById("addPrice").value;
+    if (tempRestaurant === "") {alert("Please enter restaurant name."); return;}
+    if (tempMealName === "") {alert("Please enter meal name."); return;}
+    if (tempCalories === "") {alert("Please enter calories."); return;}
+    if (tempPrice === "") {alert("Please enter price."); return;}
+    fetch(`http://localhost:3002/addDelete/add/${tempRestaurant}/${tempMealName}/${tempCalories}/${tempPrice}`)
+      .then(() => {
         alert("Data successfully added!");
-        if (restaurant.includes(data.restaurant)) {return;}
-        setRestaurant([...restaurant, data.restaurant]);
+        window.location.reload();
       })
       .catch((err) => {
         alert("Data failed to add.");
@@ -79,19 +66,18 @@ export const AddDelete = () => {
 
   // change restaurant function
   function changeRestaurant() {
-    let newRestaurant = document.getElementById("deleteRestaurant").value;
-    fetchMealName(newRestaurant);
+    let tempRestaurant = document.getElementById("deleteRestaurant").value;
+    fetchMealName(tempRestaurant);
   }
 
   // deleteMeal function
   function deleteMeal() {
-    let restaurant = document.getElementById("deleteRestaurant").value;
-    let mealName = document.getElementById("deleteMealName").value;
-    fetch(`http://localhost:3002/addDelete/delete/${restaurant}/${mealName}`)
-      .then((res) => res.json())
-      .then((data) => {
+    let tempRestaurant = document.getElementById("deleteRestaurant").value;
+    let tempMealName = document.getElementById("deleteMealName").value;
+    fetch(`http://localhost:3002/addDelete/delete/${tempRestaurant}/${tempMealName}`)
+      .then(() => {
         alert("Data successfully deleted!");
-        fetchMealName(restaurant[0]);
+        window.location.reload();
       })
       .catch((err) => {
         alert("Data failed to delete.");
@@ -105,25 +91,25 @@ export const AddDelete = () => {
 
       <div className="addDelete">
         <div className="addDeleteTitle">Add Meal</div>
-        <div id="addRestaurantDiv">
-          Restaurant: <input type="text" id="addRestaurant" placeholder="ex: KFC" value={value} onChange={onChangeAddRestaurant} />
+        <div className="addMealDiv" id="addRestaurantDiv">
+          Restaurant: <input type="text" id="addRestaurant" placeholder="ex: KFC" value={value} onChange={(e)=>{setValue(e.target.value);}} />
           <div>
             {restaurant
               .filter(item => {
                 const searchTerm = value.toLowerCase();
                 const itemName = item.toLowerCase();
                 return searchTerm && itemName.includes(searchTerm) && itemName !== searchTerm;})
-              .map((item) => <div className="dropDown" onClick={()=>setItem(item)} key={item}>{item}</div>)
+              .map((item) => <div className="dropDown" onClick={()=>{setValue(item);}} key={item}>{item}</div>)
             }
           </div>
         </div>
-        <div id="addMealNameDiv">
+        <div className="addMealDiv" id="addMealNameDiv">
           Meal Name: <input type="text" id="addMealName" placeholder="ex: Meal 1" />
         </div>
-        <div id="addCaloriesDiv">
+        <div className="addMealDiv" id="addCaloriesDiv">
           Calories: <input type="text" id="addCalories" placeholder="ex: 800" />
         </div>
-        <div id="addPriceDiv">
+        <div className="addMealDiv" id="addPriceDiv">
           Price: <input type="text" id="addPrice" placeholder="ex: 12.99" />
         </div>
         <button onClick={addMeal}>Add</button>
