@@ -5,6 +5,7 @@
   background-color: #e0d9d3;
   text-align: center;
   font-family: "Comic Sans MS";
+  z-index: 0;
 }
 
 .App #title {
@@ -18,7 +19,6 @@
   width: 250px;
   height: 98vh;
   background-color: #CCCCCC;
-  z-index: 0;
 }
 
 .SidebarList {
@@ -57,6 +57,58 @@
   background-color: rgb(84, 102, 61);
   text-align: center;
   font-family: "Comic Sans MS";
+}
+
+.addDelete .addDeleteTitle {
+  font-size: 30px;
+  height: 40px;
+  width: 100%;
+  background-color: #f3efdd;
+}
+
+.addDelete #addRestaurantDiv {
+  float: left;
+  width: 50%;
+  height: 40px;
+  font-size: 20px;
+  background-color: aqua;
+}
+
+.addDelete .dropDown {
+  background-color: white;
+  display: flex;
+  position: relative;
+  flex-direction: column;
+  border: 1px solid gray;
+  z-index: 3;
+}
+
+.addDelete .dropDown:empty {
+  border: none;
+}
+
+.addDelete #addMealNameDiv {
+  float: left;
+  width: 50%;
+  height: 40px;
+  font-size: 20px;
+  background-color: aquamarine;
+}
+
+.addDelete #addCaloriesDiv {
+  float: left;
+  width: 50%;
+  height: 40px;
+  font-size: 20px;
+  /* background-color: blue; */
+}
+
+.addDelete #addPriceDiv {
+  float: left;
+  width: 50%;
+  height: 40px;
+  font-size: 20px;
+  /* background-color: blueviolet; */
 }
 
 /* CalCalculator style */

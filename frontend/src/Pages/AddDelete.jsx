@@ -103,16 +103,17 @@ export const AddDelete = () => {
     <div className="App">
       <div id="title">Add & Delete Menu</div>
 
-      <div className="addDelete">Add Meal
+      <div className="addDelete">
+        <div className="addDeleteTitle">Add Meal</div>
         <div id="addRestaurantDiv">
           Restaurant: <input type="text" id="addRestaurant" placeholder="ex: KFC" value={value} onChange={onChangeAddRestaurant} />
-          <div className="dropDown">
+          <div>
             {restaurant
               .filter(item => {
                 const searchTerm = value.toLowerCase();
                 const itemName = item.toLowerCase();
                 return searchTerm && itemName.includes(searchTerm) && itemName !== searchTerm;})
-              .map((item) => <div onClick={()=>setItem(item)} key={item}>{item}</div>)
+              .map((item) => <div className="dropDown" onClick={()=>setItem(item)} key={item}>{item}</div>)
             }
           </div>
         </div>
@@ -128,7 +129,8 @@ export const AddDelete = () => {
         <button onClick={addMeal}>Add</button>
       </div>
 
-      <div className="addDelete">Delete Meal
+      <div className="addDelete">
+        <div className="addDeleteTitle">Delete Meal</div>
         <p>
           <select className="deleteMeal" id="deleteRestaurant" onChange={changeRestaurant}>
             {restaurant.map((restaurant) => <option key={restaurant}>{restaurant}</option>)}
