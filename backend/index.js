@@ -19,6 +19,30 @@ con.connect((err) => {
   console.log('Connected to MySQL!');
 });
 
+// endpoint for mutiple page
+app.get("/restaurantList", async (req, res) => {
+  let query = "SELECT DISTINCT restaurant FROM favoritemeal";
+  console.log("fetching restaurant")
+  con.query(query, (err, result) => {
+    if (err) throw err;
+    res.status(200).send(result);
+  })
+});
+
+// endpoint for home page
+app.get("/Meals/:tempRestaurant/:tempCalories", async (req, res) => {
+  let tempRestaurant = req.params.tempRestaurant;
+  let tempCalories = req.params.tempCalories;
+  console.log(typeof tempRestaurant, typeof tempCalories);
+  if (tempRestaurant === "<None>") {tempRestaurant = "*"}
+  let query = `SELECT ${tempRestaurant} FROM favoritemeal Where calories <= ${tempCalories} + 100`;
+  console.log("fetching restaurant")
+  con.query(query, (err, result) => {
+    if (err) throw err;
+    res.status(200).send(result);
+  })
+});
+
 // endpoint for Cal Calculator page
 app.get("/cal/:gender/:age", async (req, res) => {
   const gender = req.params.gender;
@@ -31,14 +55,6 @@ app.get("/cal/:gender/:age", async (req, res) => {
 });
 
 // endpoint for Add/Delete page
-app.get("/addDelete/restaurant", async (req, res) => {
-  let query = "SELECT DISTINCT restaurant FROM favoritemeal";
-  console.log("fetching restaurant")
-  con.query(query, (err, result) => {
-    if (err) throw err;
-    res.status(200).send(result);
-  })
-});
 
 app.get("/addDelete/mealName/:restaurant", async (req, res) => {
   const restaurant = req.params.restaurant;

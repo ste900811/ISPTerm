@@ -40,7 +40,7 @@ export const AddDelete = () => {
 
   // fetch restaurant function
   function fetchRestaurant() {
-    fetch(`http://localhost:3002/addDelete/restaurant`)
+    fetch(`http://localhost:3002/restaurantList`)
     .then((res) => res.json())
     .then((data) => {
       let temp = []
