@@ -25,12 +25,29 @@ export const Home = () => {
     fetch(`http://localhost:3002/Meals/${tempRestaurant}/${tempCalories}`)
     .then((res) => res.json())
     .then((data) => {
-      let temp = generatedMeal;
-      data.forEach((item) => {
-        temp.push(item);
-      })
+      let temp = [];
+      while (tempCalories > 0) {
+        let index = Math.floor(Math.random() * data.length);
+        let flag = true;
+        temp.forEach((item) => {if (item.mealName === data[index].mealName) item.count += 1; flag = false;})
+        if (flag) {
+          console.log(typeof(data[index]))
+          console.log(data[index])
+          let newItem = new Map();
+          console.log(typeof(newItem))
+          console.log(newItem)
+          newItem.set("mealName", data[index].mealName);
+          newItem.set("calories", data[index].calories);
+          newItem.set("price", data[index].price);
+          newItem.set("count", 1);
+          temp.push(newItem);
+        };
+        tempCalories -= data[index].calories;
+        data.filter((item) => {return item.calories <= tempCalories});
+      }
+      console.log(temp);
       setGeneratedMeal(temp);
-      console.log(generatedMeal)
+      console.log("check generate", generatedMeal)
     });
   }
 
@@ -39,9 +56,6 @@ export const Home = () => {
   }, []);
 
   return(
-
-
-
     <div className="App">
       <div id="title">Home</div>
       <div className="homeBodyTitle">Random Meal Generator</div>
@@ -56,18 +70,13 @@ export const Home = () => {
         </div>
         <div className="buttonDiv" onClick={generateMeal}><button>Generate</button></div>
         <div className="displayArea">
-          {generatedMeal.map((item) => {<div>{item.mealName}{item.calories}{item.price}</div>})}
-{/* 
           <table>
             <tbody>
-            <tr><th>Meal</th><th>Calories</th><th>Price</th></tr>
-            {generatedMeal.map((item) => {<tr>
-                                                <th>{item.mealName}</th>
-                                                <th>{item.calories}</th>
-                                                <th>{item.price}</th>
-                                              </tr>})}
+            <tr><th>Meal</th><th>Calories</th><th>Price</th><th>Count</th></tr>
+            {generatedMeal.map((item) => <tr><th>{item.get("mealName")}</th><th>{item.get("calories")}</th>
+                                            <th>{item.get("price")}</th><th>{item.get("count")}</th></tr>)}
             </tbody>
-          </table> */}
+          </table>
         </div>
       </div>
     </div>
