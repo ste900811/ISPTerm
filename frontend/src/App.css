@@ -18,7 +18,7 @@
   float: left;
   width: 250px;
   height: 98vh;
-  background-color: #e8eceb;
+  background-color: rgb(241, 184, 117);
 }
 
 .SidebarList {
@@ -31,7 +31,7 @@
   height: 40px;
   width: 230px;
   list-style: none;
-  background-color: #e8eceb;
+  /* background-color: pink; */
   font-size: 20px;
   font-family: "Comic Sans MS";
 }
@@ -47,34 +47,51 @@
 }
 
 /* home style */
-.homeBodyTitle {
-  font-size: 30px;
+.homeSection {
+  float: left;
+  width: calc(100% - 110px);
+  height: 700px;
+  margin-top: 20px;
+  margin-left: 50px;
+  color: #e09e50;
+  border: solid black 5px;
+  background-color: #fcd752;
+  text-align: center;
   font-family: "Comic Sans MS";
-  height: 50px;
-  background-color: #e09e50;
+}
+
+.homeSection .sectionTitle {
+  font-size: 30px;
+  height: 40px;
+  width: 100%;
+  background-color: #2D3E4E;
 }
 
 .homeBody {
   width: 100%;
   height: 85vh;
-  background-color: aqua;
   text-align: center;
+  color: black;
+  font-size: 20px;
   z-index: 0;
+}
+
+.homeBody .total {
+  font-size: 26px;
+  font-family: Verdana, Geneva, Tahoma, sans-serif;
+  color: red;
+}
+
+.homeBody #table {
+  text-align: center;
+  border-spacing: 10px;
+  font-size: 18px;
 }
 
 .input {
   float: left;
   width: 50%;
   height: 30px;
-  background-color: red;
-}
-
-.buttonDiv {
-  background-color: blue;
-}
-
-.total {
-  background-color: green;
 }
 
 /* Add&Delete style */

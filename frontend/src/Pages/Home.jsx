@@ -42,6 +42,7 @@ export const Home = () => {
         })
         if (flag) {
           let newItem = new Map();
+          newItem.set("restaurant", filterData[index].restaurant);
           newItem.set("mealName", filterData[index].mealName);
           newItem.set("calories", filterData[index].calories);
           newItem.set("price", filterData[index].price);
@@ -72,27 +73,30 @@ export const Home = () => {
   return(
     <div className="App">
       <div id="title">Home</div>
-      <div className="homeBodyTitle">Random Meal Generator</div>
-      <div className="homeBody">
-        <div className="input">Restaurant Perfer:
-          <select id="selectRestaurant">
-            {restaurant.map((item) => <option key={item}>{item}</option>)}
-          </select>
-        </div>
-        <div className="input">
-          Calories: <input type="text" id="calories"/>
-        </div>
-        <div className="buttonDiv" onClick={generateMeal}><button>Generate</button></div>
-        <div className="displayArea">
-          <table>
-            <tbody>
-            <tr><th>Meal</th><th>Calories</th><th>Price</th><th>Count</th></tr>
-            {generatedMeal.map((item) => <tr key={item.get("mealName")}><th>{item.get("mealName")}</th><th>{item.get("calories")}</th>
+        <div className="homeSection">
+        <div className="sectionTitle">Random Meal Generator</div>
+        <div className="homeBody">
+          <div className="input">Restaurant Perfer:
+            <select id="selectRestaurant">
+              {restaurant.map((item) => <option key={item}>{item}</option>)}
+            </select>
+          </div>
+          <div className="input">
+            Calories: <input type="text" id="calories"/>
+          </div>
+          <div className="buttonDiv" onClick={generateMeal}><button>Generate</button></div>
+          <div className="displayArea">
+            <table align="center" id="table">
+              <tbody>
+                <tr><th>Restaurant</th><th>Meal</th><th>Calories</th><th>Price</th><th>Count</th></tr>
+                {generatedMeal.map((item) => <tr key={item.get("mealName")}><th>{item.get("restaurant")}</th>
+                                            <th>{item.get("mealName")}</th><th>{item.get("calories")}</th>
                                             <th>{item.get("price")}</th><th>{item.get("count")}</th></tr>)}
-            </tbody>
-          </table>
+              </tbody>
+            </table>
+          </div>
+          <div className="total">Total Calories {totalCalories}   Total Price: {totalPrice}</div>
         </div>
-        <div className="total">Total Calories {totalCalories}   Total Price: {totalPrice}</div>
       </div>
     </div>
   );
