@@ -6,6 +6,7 @@ export const Home = () => {
   const [restaurant, setRestaurant] = useState([]);
   const [generatedMeal, setGeneratedMeal] = useState([]);
 
+
   function fetchRestaurant() {
     fetch(`http://localhost:3002/restaurantList`)
     .then((res) => res.json())
@@ -27,25 +28,31 @@ export const Home = () => {
     .then((data) => {
       let temp = [];
       while (tempCalories > 0) {
+        console.log(data)
         let index = Math.floor(Math.random() * data.length);
+        console.log("pick", data[index].mealName)
         let flag = true;
-        temp.forEach((item) => {if (item.mealName === data[index].mealName) item.count += 1; flag = false;})
+        temp.forEach((item) => {
+          console.log(item.get("mealName"), data[index].mealName)
+          if (item.get("mealName") === data[index].mealName) {
+            item.set(item.get("count") + 1);
+            flag = false;
+          }
+        })
         if (flag) {
-          console.log(typeof(data[index]))
-          console.log(data[index])
           let newItem = new Map();
-          console.log(typeof(newItem))
-          console.log(newItem)
           newItem.set("mealName", data[index].mealName);
           newItem.set("calories", data[index].calories);
           newItem.set("price", data[index].price);
           newItem.set("count", 1);
           temp.push(newItem);
         };
+        console.log("before", tempCalories)
         tempCalories -= data[index].calories;
+        console.log("after", tempCalories)
         data.filter((item) => {return item.calories <= tempCalories});
+        console.log(data);
       }
-      console.log(temp);
       setGeneratedMeal(temp);
       console.log("check generate", generatedMeal)
     });
@@ -73,7 +80,7 @@ export const Home = () => {
           <table>
             <tbody>
             <tr><th>Meal</th><th>Calories</th><th>Price</th><th>Count</th></tr>
-            {generatedMeal.map((item) => <tr><th>{item.get("mealName")}</th><th>{item.get("calories")}</th>
+            {generatedMeal.map((item) => <tr id={item.get("mealName")}><th>{item.get("mealName")}</th><th>{item.get("calories")}</th>
                                             <th>{item.get("price")}</th><th>{item.get("count")}</th></tr>)}
             </tbody>
           </table>

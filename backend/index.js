@@ -31,12 +31,11 @@ app.get("/restaurantList", async (req, res) => {
 
 // endpoint for home page
 app.get("/Meals/:tempRestaurant/:tempCalories", async (req, res) => {
-  let tempRestaurant = req.params.tempRestaurant;
   let tempCalories = req.params.tempCalories;
-  console.log(typeof tempRestaurant, typeof tempCalories);
-  if (tempRestaurant === "<None>") {tempRestaurant = "*"}
-  let query = `SELECT ${tempRestaurant} FROM favoritemeal Where calories <= ${tempCalories} + 100`;
-  console.log("fetching restaurant")
+  let query = `SELECT * FROM favoritemeal Where calories <= ${tempCalories} + 100`;
+  let tempRestaurant = req.params.tempRestaurant;
+  if (tempRestaurant != "<None>") {query += ` AND restaurant = "${tempRestaurant}"`}
+  console.log("fetching meals")
   con.query(query, (err, result) => {
     if (err) throw err;
     res.status(200).send(result);
