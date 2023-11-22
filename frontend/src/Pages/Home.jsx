@@ -5,7 +5,8 @@ import '../App.css';
 export const Home = () => {
   const [restaurant, setRestaurant] = useState([]);
   const [generatedMeal, setGeneratedMeal] = useState([]);
-
+  const [totalPrice, setTotalPrice] = useState(0);
+  const [totalCalories, setTotalCalories] = useState(0);
 
   function fetchRestaurant() {
     fetch(`http://localhost:3002/restaurantList`)
@@ -26,35 +27,41 @@ export const Home = () => {
     fetch(`http://localhost:3002/Meals/${tempRestaurant}/${tempCalories}`)
     .then((res) => res.json())
     .then((data) => {
+      // filter the meals base on the Calories
+      let filterData = data;
       let temp = [];
-      while (tempCalories > 0) {
-        console.log(data)
-        let index = Math.floor(Math.random() * data.length);
-        console.log("pick", data[index].mealName)
+      while (tempCalories + 100 > 0) {
+        if (filterData.length === 0) { break; }
+        let index = Math.floor(Math.random() * filterData.length);
         let flag = true;
         temp.forEach((item) => {
-          console.log(item.get("mealName"), data[index].mealName)
-          if (item.get("mealName") === data[index].mealName) {
-            item.set(item.get("count") + 1);
+          if (item.get("mealName") === filterData[index].mealName) {
+            item.set("count", item.get("count") + 1);
             flag = false;
           }
         })
         if (flag) {
           let newItem = new Map();
-          newItem.set("mealName", data[index].mealName);
-          newItem.set("calories", data[index].calories);
-          newItem.set("price", data[index].price);
+          newItem.set("mealName", filterData[index].mealName);
+          newItem.set("calories", filterData[index].calories);
+          newItem.set("price", filterData[index].price);
           newItem.set("count", 1);
           temp.push(newItem);
         };
-        console.log("before", tempCalories)
-        tempCalories -= data[index].calories;
-        console.log("after", tempCalories)
-        data.filter((item) => {return item.calories <= tempCalories});
-        console.log(data);
+        tempCalories -= filterData[index].calories;
+        filterData = filterData.filter((item) => {return item.calories <= tempCalories});
       }
       setGeneratedMeal(temp);
-      console.log("check generate", generatedMeal)
+
+      // calculate the total price and total calories
+      let tempP = 0;
+      let tempC = 0;
+      temp.forEach((item) => {
+        tempP += item.get("price") * item.get("count");
+        tempC += item.get("calories") * item.get("count");
+      })
+      setTotalPrice(Math.round(tempP*100)/100);
+      setTotalCalories(tempC);
     });
   }
 
@@ -80,11 +87,12 @@ export const Home = () => {
           <table>
             <tbody>
             <tr><th>Meal</th><th>Calories</th><th>Price</th><th>Count</th></tr>
-            {generatedMeal.map((item) => <tr id={item.get("mealName")}><th>{item.get("mealName")}</th><th>{item.get("calories")}</th>
+            {generatedMeal.map((item) => <tr key={item.get("mealName")}><th>{item.get("mealName")}</th><th>{item.get("calories")}</th>
                                             <th>{item.get("price")}</th><th>{item.get("count")}</th></tr>)}
             </tbody>
           </table>
         </div>
+        <div className="total">Total Calories {totalCalories}   Total Price: {totalPrice}</div>
       </div>
     </div>
   );

@@ -73,6 +73,10 @@
   background-color: blue;
 }
 
+.total {
+  background-color: green;
+}
+
 /* Add&Delete style */
 .addDelete {
   float: left;
