@@ -80,6 +80,9 @@ app.get("/addDelete/add/:restaurant/:mealName/:calories/:price", async (req, res
       res.status(200).send(result);
     } catch (err) {
       console.log(err);
+      if (err.code == "ER_DUP_ENTRY") {
+        res.status(400).send("Meal already exists");
+      }
     }
   })
 });

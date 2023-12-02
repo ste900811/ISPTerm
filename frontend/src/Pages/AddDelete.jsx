@@ -29,13 +29,12 @@ export const AddDelete = () => {
     if (tempCalories === "") {alert("Please enter calories."); return;}
     if (tempPrice === "") {alert("Please enter price."); return;}
     fetch(`http://localhost:3002/addDelete/add/${tempRestaurant}/${tempMealName}/${tempCalories}/${tempPrice}`)
-      .then(() => {
+      .then((res) => {
+        if (res.status === 400) { alert("Meal already exists"); return;}
         alert("Data successfully added!");
         window.location.reload();
       })
-      .catch((err) => {
-        alert("Data failed to add.");
-      });
+      .catch((err) => { alert(err); });
   }
 
   // fetch restaurant function
